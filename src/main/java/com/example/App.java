@@ -1,5 +1,7 @@
 package com.example;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -14,21 +16,26 @@ import java.util.Stack;
  *
  */
 public class App {
+    private static final Logger logger = LoggerFactory.getLogger(App.class);
     public static void main(String[] args) {
+        logger.info("started.");
         return;
     }
 
     static class Node {
         public int val;
         public List<Node> neighbors;
+
         public Node() {
             val = 0;
             neighbors = new ArrayList<Node>();
         }
+
         public Node(int _val) {
             val = _val;
             neighbors = new ArrayList<Node>();
         }
+
         public Node(int _val, ArrayList<Node> _neighbors) {
             val = _val;
             neighbors = _neighbors;
@@ -62,6 +69,7 @@ public class App {
             dst.neighbors.add(neighborDst);
         }
     }
+
     public String mergeAlternately(String word1, String word2) {
         StringBuilder sb = new StringBuilder();
         int lengthDiff = word2.length() - word1.length();
@@ -153,7 +161,7 @@ public class App {
             }
         }
         StringBuilder sb = new StringBuilder();
-        
+
         for (int i = 0; i < result.size(); i++) {
             Character c = result.get(i);
             if (c == null) {
@@ -248,7 +256,8 @@ public class App {
         while (!maxHeap.isEmpty()) {
             char c = maxHeap.poll();
             for (int j = 0; j < freqMap.get(c); j++) {
-                if (i >= s.length()) i = 1;
+                if (i >= s.length())
+                    i = 1;
                 result[i] = c;
                 i += 2;
             }
@@ -277,9 +286,10 @@ public class App {
 
     /**
      * |c[0]|c[1]|c[2]|c[3]|
-     * 0    1    2    3    4 
-     * |                      leftLimit
-     *           |            rightLimit
+     * 0 1 2 3 4
+     * | leftLimit
+     * | rightLimit
+     * 
      * @param s
      * @return
      */
